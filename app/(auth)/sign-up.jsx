@@ -8,8 +8,11 @@ import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 
 import { createUser } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 export default function SignUp() {
+  const { setUser, setIsLoggedIn } = useGlobalContext();
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -30,6 +33,10 @@ export default function SignUp() {
 
       //set it to global state...
 
+      setUser(result);
+      setIsLoggedIn(true);
+
+      router.replace("/home");
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);

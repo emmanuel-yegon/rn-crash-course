@@ -12,6 +12,7 @@ const VideoCard = ({
   },
 }) => {
   const [play, setPlay] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   return (
     <View className="flex-col items-center px-4 mb-14">
@@ -45,7 +46,13 @@ const VideoCard = ({
         </View>
 
         <View className="pt-2">
-          <Image source={icons.menu} className="w-5 h-5" resizeMode="contain" />
+          <TouchableOpacity onPress={() => setLiked(!liked)} className="pt-2">
+            <Image
+              source={liked ? icons.heartFilled : icons.heartOutlined}
+              className="w-5 h-5"
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
